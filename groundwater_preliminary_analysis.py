@@ -25,6 +25,7 @@ from pathlib import Path
 import csv
 import math
 import sys
+import textwrap
 
 try:
     import matplotlib.pyplot as plt
@@ -98,38 +99,45 @@ def main() -> None:
     n_pre = [r["n_may"] for r in summaries]
     n_post = [r["n_oct_nov"] for r in summaries]
 
-    fig, ax = plt.subplots(figsize=(10.2, 5.7))
-    ax.plot(years, pre, marker="o", linewidth=2.2, label="May (pre-monsoon)")
-    ax.plot(years, post, marker="s", linewidth=2.2, label="October/November (post-monsoon)")
+    fig, ax = plt.subplots(figsize=(10.5, 6.4))
+    ax.plot(years, pre, marker="o", linewidth=2.2, color="#1f77b4", label="May (pre-monsoon)")
+    ax.plot(years, post, marker="s", linewidth=2.2, color="#ff7f0e", label="October/November (post-monsoon)")
 
     for x, y, n in zip(years, pre, n_pre):
         offset = (0, 9)
         if x == 2018:
-            offset = (-14, 13)
+            offset = (-16, 12)
         ax.annotate(f"{y:.2f} (n={n})", (x, y), xytext=offset,
                     textcoords="offset points", ha="center", fontsize=8.5)
     for x, y, n in zip(years, post, n_post):
         offset = (0, -16)
         if x == 2018:
-            offset = (14, -17)
+            offset = (16, -16)
         ax.annotate(f"{y:.2f} (n={n})", (x, y), xytext=offset,
                     textcoords="offset points", ha="center", fontsize=8.5)
 
-    ax.set_title("Mean Groundwater Depth in Malshiras Taluka (2015-2019)", pad=12, weight="bold")
-    ax.set_xlabel("Year")
-    ax.set_ylabel("Mean depth to groundwater (m below ground level)")
+    ax.set_title("Mean Groundwater Depth in Malshiras Taluka (2015–2019)", pad=14, weight="bold", fontsize=12)
+    ax.set_xlabel("Year", fontsize=10.5, labelpad=8)
+    ax.set_ylabel("Mean depth to groundwater (m below ground level)", fontsize=10.5, labelpad=8)
     ax.set_xticks(years)
     ax.set_ylim(0, 9)
-    ax.grid(True, axis="y", alpha=0.3)
-    # Put legend in lower-left where it does not collide with the 2016 data label.
-    ax.legend(frameon=False, loc="lower left")
-    fig.text(
-        0.01, 0.01,
-        "Lower depth-to-water means a shallower water table. Mean calculated from available well readings. "
-        "Source: GSDA, Atal Bhujal Yojana Hydrogeological Report, Malshiras Taluka, Table 02.",
-        ha="left", va="bottom", fontsize=8
+    ax.grid(True, axis="y", alpha=0.3, linestyle="--")
+    # Put legend in lower-left where it does not collide with data labels.
+    ax.legend(frameon=False, loc="lower left", fontsize=9.5)
+
+    caption = (
+        "Figure 1. Mean pre-monsoon (May) and post-monsoon (October/November) depth-to-water in Malshiras Taluka, 2015–2019. "
+        "Values are in metres below ground level (m bgl); n indicates the number of valid well observations used to calculate "
+        "each seasonal mean. Lower depth-to-water values indicate a shallower water table. "
+        "Source: GSDA, Atal Bhujal Yojana Hydrogeological Report, Malshiras Taluka, Table 02."
     )
-    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    wrapped_caption = textwrap.fill(caption, width=118)
+    fig.text(
+        0.06, 0.02,
+        wrapped_caption,
+        ha="left", va="bottom", fontsize=8.8, linespacing=1.35
+    )
+    fig.tight_layout(rect=(0.04, 0.12, 0.98, 0.98))
     fig.savefig(FIGURE_PNG, dpi=220, bbox_inches="tight")
     plt.close(fig)
 
