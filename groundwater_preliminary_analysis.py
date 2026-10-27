@@ -116,7 +116,7 @@ def main() -> None:
         ax.annotate(f"{y:.2f} (n={n})", (x, y), xytext=offset,
                     textcoords="offset points", ha="center", fontsize=8.5)
 
-    ax.set_title("Mean Groundwater Depth in Malshiras Taluka (2015–2019)", pad=14, weight="bold", fontsize=12)
+    ax.set_title("Mean Groundwater Depth in Malshiras Taluka (2015-2019)", pad=14, weight="bold", fontsize=12)
     ax.set_xlabel("Year", fontsize=10.5, labelpad=8)
     ax.set_ylabel("Mean depth to groundwater (m below ground level)", fontsize=10.5, labelpad=8)
     ax.set_xticks(years)
