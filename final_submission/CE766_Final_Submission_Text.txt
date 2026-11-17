@@ -1,0 +1,70 @@
+================================================================================
+CE766: WATERSHED MANAGEMENT — FINAL PROJECT SUBMISSION (15 MARKS)
+Study Area: Malshiras Taluka, Solapur District, Maharashtra (2015–2019)
+Repository: https://github.com/aryan90379/watershed_project
+================================================================================
+
+FILES TO UPLOAD IN MOODLE (located in final_submission/):
+  - Visual 1: final_submission/Figure_1_Baseline_Seasonal_DTW.png
+  - Visual 2: final_submission/Figure_2_XLRM_Management_Scenarios.png
+
+--------------------------------------------------------------------------------
+1. Brief Statement of the Problem (2 marks)  [Word Count: 214 / 250 max]
+--------------------------------------------------------------------------------
+Malshiras Taluka in Solapur District, Maharashtra, lies within a semi-arid, drought-prone hard-rock basalt zone of the Bhima River basin. Over the 2015–2019 analysis period, intensive groundwater extraction for perennial cash crops (predominantly sugarcane and horticulture), combined with erratic monsoon rainfall (215.29–582.30 mm/year), produced severe pre-monsoon water-table depletion and acute vulnerability to mid-season dry spells. Crucially, moderate rainfall does not guarantee aquifer recovery: in 2018 (332.50 mm rainfall), the mean water table rose by only 0.15 m (from 6.02 to 5.87 m below ground level, m bgl), compared to a 1.32 m rise in 2015 under lower rainfall (215.29 mm). 
+
+For watershed management and decision-making under the Atal Bhujal Yojana (ABY), key stakeholders—including Gram Panchayats, Water User Associations (WUAs), local farmers, the Groundwater Surveys and Development Agency (GSDA), the Central Ground Water Board (CGWB), and the Solapur District Administration—must determine whether supply-side Managed Aquifer Recharge (MAR) structures (check dams, percolation tanks) or demand-side interventions (micro-irrigation, crop-water budgeting) can reliably stabilize post-monsoon groundwater levels. Building directly upon our preliminary submission (which established the baseline 2015–2019 seasonal depth-to-water trends across 22 monitoring wells), this final submission extends the empirical baseline into an XLRM lumped aquifer water-balance simulation framework to evaluate supply-side, demand-side, and integrated management levers under hydrogeological and climatic uncertainties without altering the underlying field dataset.
+
+--------------------------------------------------------------------------------
+2. Data (1 mark)  [Word Count: 139 / 150 max]
+--------------------------------------------------------------------------------
+This study uses site-specific empirical data for Malshiras Taluka covering 2015–2019. Groundwater depth-to-water (DTW, in metres below ground level, m bgl) observations were transcribed from Table 02 of the GSDA (2020) Atal Bhujal Yojana Hydrogeological Report. Spatially, the dataset comprises 22 point monitoring wells distributed across the taluka (14 monitored by SGWD/GSDA and 8 by CGWB), aggregated to a lumped taluka-scale mean. Temporally, readings have a semi-annual seasonal resolution—pre-monsoon (May) and post-monsoon (October/November). Missing well records were retained as null values rather than zero, yielding n = 19–20 valid wells in May and n = 20–21 in October/November. Annual taluka-scale rainfall totals (mm/year) for 2015–2019 were compiled from official Solapur District Administration records. Unconfined Deccan Trap basalt specific yield (Sy in [0.015, 0.025], reference 0.020) and monsoon recharge factor (f_r = 0.22) bounds were taken from CGWB GEC-2015 norms.
+
+--------------------------------------------------------------------------------
+3. Methodology [XLRM & Plain-Text Equations] (3 marks)  [Word Count: 306 / 400 max]
+--------------------------------------------------------------------------------
+We formulate the Malshiras Taluka groundwater management problem using the XLRM framework, grounded in the Water Table Fluctuation (WTF) method (Healy & Cook, 2002; CGWB GEC-2015):
+
+1. Uncertainties (X): (i) Hydroclimatic variability across observed annual rainfall P_t in {215.29, 436.70, 530.52, 332.50, 582.30} mm (2015–2019); and (ii) unconfined fractured basalt specific yield Sy in {0.015, 0.020, 0.025} (dimensionless; reference Sy = 0.020, with gross monsoon recharge factor f_r = 0.22 capturing rainfall infiltration and canal/surface seepage).
+
+2. Policy Levers (L): Four scenarios parameterized by supply-side MAR recharge enhancement (alpha_MAR) and demand-side monsoon draft reduction (beta_dem): L0 (Baseline BAU: alpha_MAR = 0, beta_dem = 0); L1 (Supply-Side MAR via check dams/percolation tanks: alpha_MAR = 0.20, beta_dem = 0); L2 (Demand-Side Management via drip irrigation/crop shift: alpha_MAR = 0, beta_dem = 0.25); and L3 (Integrated Management: alpha_MAR = 0.20, beta_dem = 0.25).
+
+3. Relationships (R) - Main Plain-Text Equations (Healy & Cook, 2002; CGWB, 2017):
+Mean_DTW(t, s) = (1 / n_t,s) * sum(DTW_i,t,s)
+Delta_h_obs(t) = Mean_DTW_May(t) - Mean_DTW_OctNov(t)
+Delta_S_obs(t) = Sy * Delta_h_obs(t) * 1000 = R_base(t) - D_base(t)
+Delta_h_sim(t) = [ (1 + alpha_MAR) * R_base(t) - (1 - beta_dem) * D_base(t) ] / (1000 * Sy)
+DTW_OctNov_sim(t) = Mean_DTW_May(t) - Delta_h_sim(t)
+
+Term Definitions: t is year (2015–2019); s is season (May or Oct/Nov); DTW_i,t,s is depth-to-water at well i (m bgl); n_t,s is valid well count; Delta_h_obs(t) and Delta_h_sim(t) are observed and simulated seasonal water-table rises (m); Delta_S_obs(t) is net seasonal aquifer storage change (mm water equivalent); R_base(t) = f_r * P_t is baseline gross monsoon recharge (mm); D_base(t) is implied baseline seasonal net draft/discharge (mm); and DTW_OctNov_sim(t) is simulated post-monsoon DTW (m bgl).
+
+4. Measures (M): (M1) Simulated post-monsoon DTW (DTW_OctNov_sim, m bgl, compared against a 3.50 m bgl sustainability threshold); (M2) net seasonal storage recovery Delta_S_sim (mm); and (M3) dry-year stress recovery in 2018.
+
+--------------------------------------------------------------------------------
+4. Results [Visuals 1 & 2 Writeup] (5 marks)  [Word Count: 319 / 400 max]
+--------------------------------------------------------------------------------
+Figure 1 presents the baseline empirical pre-monsoon (May) and post-monsoon (October/November) mean depth-to-water (m bgl) across the 22 monitoring wells in Malshiras Taluka from 2015 to 2019. In every year, post-monsoon DTW was lower (shallower water table) than pre-monsoon DTW: 6.46 to 5.14 m in 2015 (rise Delta_h_obs = 1.32 m; P = 215.29 mm), 7.17 to 3.04 m in 2016 (4.13 m; 436.70 mm), 6.86 to 2.78 m in 2017 (4.08 m; 530.52 mm), 6.02 to 5.87 m in 2018 (0.15 m; 332.50 mm), and 8.07 to 3.63 m in 2019 (4.44 m; 582.30 mm). Figure 1 highlights the critical 2018 anomaly: despite receiving 117.21 mm more rainfall than 2015, 2018 recorded almost no net water-table recovery (0.15 m), leaving May 2019 at the deepest pre-monsoon level (8.07 m bgl).
+
+Figure 2 illustrates the XLRM scenario outputs for post-monsoon DTW (Figure 2a) and net seasonal aquifer storage recovery Delta_S (Figure 2b) across levers L0–L3. Water-balance decomposition (at reference Sy = 0.020, f_r = 0.22) reveals that implied seasonal draft D_base surged to 70.15 mm in 2018 (consuming 96% of the 73.15 mm gross recharge, leaving Delta_S = 3.0 mm), compared to 13.47–39.31 mm in other years. Consequently, in wet years (2016, 2017, 2019), Supply-Side MAR (L1) outperforms Demand-Side Management (L2), increasing 2019 storage recovery from 88.8 mm (L0) to 114.4 mm (L1) versus 98.6 mm (L2). Conversely, during the 2018 stress year, Demand-Side Management (L2: post-monsoon DTW = 4.99 m bgl, Delta_S = 20.5 mm) outperforms Supply-Side MAR (L1: 5.14 m bgl, Delta_S = 17.6 mm) because high pumping rather than lack of rain dominated the deficit. Integrated Management (L3) performs best across all years, improving 5-year mean post-monsoon DTW from 4.09 m (L0) to 2.72 m bgl (uncertainty range 2.27–3.00 m bgl across Sy in [0.015, 0.025]), recovering 2018 post-monsoon DTW to 4.26 m bgl, and raising 5-year mean seasonal storage recovery from 56.5 to 83.9 mm/year.
+
+--------------------------------------------------------------------------------
+5. Discussion (3 marks)  [Word Count: 302 / 400 max]
+--------------------------------------------------------------------------------
+The XLRM results demonstrate that seasonal groundwater recovery in Malshiras Taluka is governed by the interaction between hydroclimatic recharge and agricultural pumping rather than annual rainfall totals alone. In our lumped WTF model, partitioning observed storage change (Delta_S_obs = Sy * Delta_h_obs) into gross recharge (R_base) and net seasonal draft (D_base) explains the 2018 anomaly: erratic monsoon distribution triggered intensive protective irrigation pumping (D_base = 70.15 mm), offsetting natural recharge. This mechanism creates a distinct regime dependency between policy levers. Supply-side interventions (L1: check dams, nala bunds, percolation tanks) depend multiplicatively on available rainfall runoff and therefore yield large gains in normal-to-wet years (2016, 2017, 2019), but provide limited buffering when monsoon extraction spikes. Conversely, demand-side interventions (L2: drip irrigation, shifting sugarcane acreage to lower-water crops) directly curtail D_base and prove more effective than supply augmentation during drought-stress periods like 2018. Only the integrated portfolio (L3) consistently keeps post-monsoon water tables shallower than the 3.50 m bgl threshold in 3 of 5 years while reducing the 2018 deficit by 1.61 m. Parameter sensitivity across Sy in [0.015, 0.025] shows that lower specific yield amplifies water-table depth fluctuations for a given volumetric storage change, underscoring the risk of rapid head decline in low-porosity basalt.
+
+While these findings provide actionable strategic guidance for Atal Bhujal Yojana water budgeting—showing that Gram Panchayats must pair MAR structures with mandatory demand management—the lumped taluka-scale results cannot be used directly for site-level engineering design. Real-world operational deployment requires: (1) DEM-based topographic sub-watershed delineation to replace administrative taluka boundaries; (2) high-frequency (monthly/daily) piezometer and rain-gauge data to capture intra-monsoon storm intensity and dry-season (Nov–May) recession separately; (3) village-level crop acreage, canal release, and pump metering data to separate D_base from f_r; and (4) pumping-test calibration of spatially distributed Sy and transmissivity within a numerical groundwater flow model (e.g., MODFLOW).
+
+--------------------------------------------------------------------------------
+6. References and Data/Code Repository (1 mark)  [Word Count: 137 / 500 max]
+--------------------------------------------------------------------------------
+Main References and Datasets:
+
+1. Ground Water Surveys and Development Agency (GSDA) (2020). Atal Bhujal Yojana Hydrogeological Report: Malshiras Taluka, Solapur District, Maharashtra (Table 02: Historical Pre- and Post-Monsoon Groundwater Level Monitoring Data, 2015–2019). Water Supply and Sanitation Department, Government of Maharashtra. URL: https://gsda.maharashtra.gov.in/wp-content/uploads/2023/05/0.23.pdf
+
+2. Solapur District Administration (2020). Official Taluka-wise Annual Rainfall Records (Malshiras Taluka, 2015–2019). Revenue and Forest Department, Government of Maharashtra. URL: https://solapur.gov.in/en/rainfall/
+
+3. Healy, R. W., & Cook, P. G. (2002). Using groundwater levels to estimate recharge. Hydrogeology Journal, 10(1), 91–109; alongside Central Ground Water Board (CGWB) (2017), Report of the Ground Water Resource Estimation Committee (GEC-2015), Ministry of Water Resources, Government of India.
+
+Online Data and Code Repository:
+All transcribed datasets (well_level_groundwater_2015_2019.csv, annual_rainfall_2015_2019.csv), generated summary tables (calculated_seasonal_summary.csv, xlrm_scenario_summary_2015_2019.csv), reproducible Python analysis scripts (groundwater_preliminary_analysis.py, groundwater_final_xlrm_analysis.py), and high-resolution figures are publicly hosted at:
+https://github.com/aryan90379/watershed_project

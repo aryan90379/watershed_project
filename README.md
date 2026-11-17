@@ -1,78 +1,63 @@
-# Watershed Project: Groundwater Preliminary Analysis (CE766)
+# Watershed Project: Malshiras Taluka Groundwater & XLRM Management Analysis (CE766)
 
-Preliminary groundwater statistics, seasonal water level analysis, and visualization for Malshiras Taluka (Solapur District, Maharashtra, India) for 2015–2019.
+Empirical seasonal depth-to-water (DTW) baseline analysis and **XLRM (Uncertainties, Levers, Relationships, Measures)** water-balance simulation for **Malshiras Taluka (Solapur District, Maharashtra, India)** over **2015–2019**.
 
 ---
 
-## 📁 Repository Contents
+## 📁 Repository Structure
 
-| File | Description |
+| File / Folder | Description |
 | :--- | :--- |
-| [`well_level_groundwater_2015_2019.csv`](well_level_groundwater_2015_2019.csv) | Seasonal well-level measurements (in meters below ground level, m bgl) manually transcribed from Table 02 of the GSDA Malshiras report. |
-| [`annual_rainfall_2015_2019.csv`](annual_rainfall_2015_2019.csv) | Annual rainfall records for Malshiras Taluka (2015–2019). |
-| [`groundwater_preliminary_analysis.py`](groundwater_preliminary_analysis.py) | Python script computing seasonal means, sample counts, seasonal differences, summary CSV, and visualization. |
-| [`calculated_seasonal_summary.csv`](calculated_seasonal_summary.csv) | Generated seasonal summary with pre- and post-monsoon DTW means and seasonal rise. |
-| [`groundwater_preliminary_results.png`](groundwater_preliminary_results.png) | High-resolution plot showing pre- vs. post-monsoon depth-to-water levels. |
-| [`requirements.txt`](requirements.txt) | Python dependencies required to run the analysis. |
+| [`final_submission/`](final_submission/) | **Final Project Submission Package**: Contains individual Moodle visual files (`Figure_1_Baseline_Seasonal_DTW.png`, `Figure_2_XLRM_Management_Scenarios.png`), scenario summary table (`xlrm_scenario_summary_2015_2019.csv`), and copy-paste submission text (`CE766_Final_Submission_Copy_Paste_Guide.pdf` & `.txt`). |
+| [`well_level_groundwater_2015_2019.csv`](well_level_groundwater_2015_2019.csv) | Seasonal well-level DTW observations (in m bgl) across 22 monitoring wells (14 SGWD/GSDA, 8 CGWB) transcribed from Table 02 of the GSDA Malshiras report. |
+| [`annual_rainfall_2015_2019.csv`](annual_rainfall_2015_2019.csv) | Official annual rainfall records for Malshiras Taluka (2015–2019). |
+| [`groundwater_preliminary_analysis.py`](groundwater_preliminary_analysis.py) | Preliminary baseline script computing seasonal means, valid well counts ($n$), and baseline Figure 1. |
+| [`groundwater_final_xlrm_analysis.py`](groundwater_final_xlrm_analysis.py) | **Final XLRM analysis script** implementing the Water Table Fluctuation (WTF) aquifer water-balance model across policy levers ($L_0\text{–}L_3$) and specific yield uncertainties ($S_y \in [0.015, 0.025]$). |
+| [`calculated_seasonal_summary.csv`](calculated_seasonal_summary.csv) | Baseline seasonal DTW means, valid sample counts, and observed seasonal rise ($\Delta h_{\text{obs}}$). |
+| [`final_submission/xlrm_scenario_summary_2015_2019.csv`](final_submission/xlrm_scenario_summary_2015_2019.csv) | Complete XLRM simulation outputs across all policy levers and parameter uncertainty bounds (2015–2019). |
 
 ---
 
-## ⚙️ Setup and Installation
+## 🚀 Reproducing the Analysis
 
-### 1. Clone the repository
 ```bash
-git clone https://github.com/aryan90379/watershed_project.git
-cd watershed_project
-```
-
-### 2. Set up a virtual environment (Recommended)
-```bash
-# Using Homebrew Python or system Python 3
-python3 -m venv .venv
-
-# Activate the virtual environment
-# On macOS / Linux:
+# 1. Activate virtual environment (or create one with python3 -m venv .venv)
 source .venv/bin/activate
-```
-
-### 3. Install dependencies
-```bash
 pip install -r requirements.txt
-```
 
----
-
-## 🚀 Running the Analysis
-
-Once your environment is active, run:
-```bash
+# 2. Run preliminary baseline analysis
 python groundwater_preliminary_analysis.py
+
+# 3. Run final XLRM scenario & uncertainty analysis (outputs to final_submission/)
+python groundwater_final_xlrm_analysis.py
 ```
 
-This will:
-1. Parse well and rainfall observations.
-2. Calculate pre-monsoon (May) and post-monsoon (October/November) mean depth to groundwater.
-3. Compute the seasonal water table rise.
-4. Output `calculated_seasonal_summary.csv` and generate `groundwater_preliminary_results.png`.
+---
+
+## 📊 Methodology Summary (XLRM Framework)
+
+Grounded in the **Water Table Fluctuation (WTF) method** (Healy & Cook, 2002; CGWB GEC-2015):
+
+```text
+Mean_DTW(t, s) = (1 / n_t,s) * sum(DTW_i,t,s)
+Delta_h_obs(t) = Mean_DTW_May(t) - Mean_DTW_OctNov(t)
+Delta_S_obs(t) = Sy * Delta_h_obs(t) * 1000 = R_base(t) - D_base(t)
+Delta_h_sim(t) = [ (1 + alpha_MAR) * R_base(t) - (1 - beta_dem) * D_base(t) ] / (1000 * Sy)
+DTW_OctNov_sim(t) = Mean_DTW_May(t) - Delta_h_sim(t)
+```
+
+- **Uncertainties ($X$)**: Annual rainfall $P_t \in [215.29, 582.30]\text{ mm}$ and unconfined fractured basalt specific yield $S_y \in \{0.015, 0.020, 0.025\}$ (reference $S_y = 0.020$, gross recharge factor $f_r = 0.22$).
+- **Policy Levers ($L$)**:
+  - **$L_0$ (Baseline BAU)**: $\alpha_{\text{MAR}} = 0.00$, $\beta_{\text{dem}} = 0.00$
+  - **$L_1$ (Supply-Side MAR)**: $\alpha_{\text{MAR}} = 0.20$ (+20% recharge via check dams/percolation tanks), $\beta_{\text{dem}} = 0.00$
+  - **$L_2$ (Demand-Side Management)**: $\alpha_{\text{MAR}} = 0.00$, $\beta_{\text{dem}} = 0.25$ (-25% monsoon draft via drip irrigation & crop shift)
+  - **$L_3$ (Integrated Management)**: $\alpha_{\text{MAR}} = 0.20$, $\beta_{\text{dem}} = 0.25$
+- **Measures ($M$)**: Post-monsoon depth-to-water ($\text{DTW}_{\text{Oct/Nov, sim}}$, m bgl), net seasonal aquifer storage recovery ($\Delta S_{\text{sim}}$, mm), and 2018 dry-year stress resilience.
 
 ---
 
-## 📊 Analytical Methodology
+## 📚 Primary References & Data Sources
 
-$$\text{Mean DTW}(\text{year}, \text{season}) = \frac{\sum \text{valid well DTW measurements}}{\text{number of valid wells}}$$
-
-$$\text{Seasonal Difference (m)} = \text{Mean DTW}_{\text{May}} - \text{Mean DTW}_{\text{Post-monsoon}}$$
-
-> **Interpretation Note:** A positive seasonal difference indicates that the post-monsoon depth-to-water is lower (the water table has risen closer to the surface compared to May). Depth-to-water is not a direct measurement of total groundwater storage.
-
----
-
-## 📚 Data Sources
-
-1. **Ground Water Surveys and Development Agency (GSDA), 2020**  
-   *Atal Bhujal Yojana Hydrogeological Report: Malshiras Taluka, Solapur District*, Table 02:  
-   [GSDA Report PDF](https://gsda.maharashtra.gov.in/wp-content/uploads/2023/05/0.23.pdf)
-
-2. **Solapur District Administration**  
-   *Rainfall Records*:  
-   [Solapur District Rainfall Portal](https://solapur.gov.in/en/rainfall/)
+1. **Ground Water Surveys and Development Agency (GSDA), 2020** — *Atal Bhujal Yojana Hydrogeological Report: Malshiras Taluka, Solapur District*, Table 02 ([PDF Link](https://gsda.maharashtra.gov.in/wp-content/uploads/2023/05/0.23.pdf)).
+2. **Solapur District Administration, 2020** — *Official Taluka-wise Annual Rainfall Records* ([Portal Link](https://solapur.gov.in/en/rainfall/)).
+3. **Healy, R. W., & Cook, P. G. (2002)** — *Using groundwater levels to estimate recharge*, Hydrogeology Journal, 10(1), 91–109; alongside **CGWB (2017)** *Ground Water Resource Estimation Committee (GEC-2015) Report*.
