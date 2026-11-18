@@ -200,7 +200,7 @@ def plot_figure_2(rows: list[dict]) -> None:
     l3_high = [r["L3_post_dtw_sy025_m"] for r in rows]
     ax1.fill_between(
         years, l3_low, l3_high, color="#d62728", alpha=0.14,
-        label="L3 Uncertainty Band ($S_y \\in [0.015, 0.025]$)", zorder=2
+        label="L3 Uncertainty Band (Sy in [0.015, 0.025])", zorder=2
     )
 
     # Sustainable post-monsoon target line (3.50 m bgl)
@@ -249,9 +249,9 @@ def plot_figure_2(rows: list[dict]) -> None:
                          (x_idx[i] + offset, val), xytext=(0, 3),
                          textcoords="offset points", ha="center", va="bottom", fontsize=7.0)
 
-    ax2.set_title("(b) Net Seasonal Aquifer Storage Recovery $\\Delta S$ (mm)", pad=10, weight="bold", fontsize=11)
-    ax2.set_xlabel("Year (with Annual Rainfall $P$ in mm)", fontsize=10, labelpad=6)
-    ax2.set_ylabel("Seasonal groundwater storage gain $\\Delta S$ (mm)", fontsize=10, labelpad=6)
+    ax2.set_title("(b) Net Seasonal Aquifer Storage Recovery dS (mm)", pad=10, weight="bold", fontsize=11)
+    ax2.set_xlabel("Year (with Annual Rainfall P in mm)", fontsize=10, labelpad=6)
+    ax2.set_ylabel("Seasonal groundwater storage gain dS (mm)", fontsize=10, labelpad=6)
     ax2.set_xticks(x_idx)
     ax2.set_xticklabels([f"{r['year']}\n({r['annual_rainfall_mm']:.0f} mm)" for r in rows], fontsize=8.5)
     ax2.set_ylim(0, 140)
@@ -262,7 +262,7 @@ def plot_figure_2(rows: list[dict]) -> None:
         "Figure 2. XLRM scenario analysis of groundwater management interventions in Malshiras Taluka (2015–2019): "
         "(a) Post-monsoon depth-to-water (m bgl) under Baseline (L0), Supply-Side MAR (+20% recharge, L1), Demand-Side Management "
         "(-25% draft, L2), and Integrated Management (L3), with the L3 uncertainty band across specific yield Sy in [0.015, 0.025]; "
-        "(b) Net seasonal aquifer storage recovery Delta_S (mm water equivalent) at reference Sy = 0.020, f_r = 0.22."
+        "(b) Net seasonal aquifer storage recovery dS (mm water equivalent) at reference Sy = 0.020, fr = 0.22."
     )
     wrapped_caption2 = textwrap.fill(caption2, width=155)
     fig.text(
