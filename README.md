@@ -8,7 +8,7 @@ Empirical seasonal depth-to-water (DTW) baseline analysis and **XLRM (Uncertaint
 
 | File / Folder | Description |
 | :--- | :--- |
-| [`final_submission/`](final_submission/) | **Final Project Submission Package**: Contains individual Moodle visual files (`Figure_1_Baseline_Seasonal_DTW.png`, `Figure_2_XLRM_Management_Scenarios.png`), scenario summary table (`xlrm_scenario_summary_2015_2019.csv`), and copy-paste submission text (`CE766_Final_Submission_Copy_Paste_Guide.pdf` & `.txt`). |
+| [`final_submission/`](final_submission/) | **Final Project Submission Package**: Contains the final report (`Final_Project_Report.pdf`), individual visual files (`Figure_1_Baseline_Seasonal_DTW.png`, `Figure_2_XLRM_Management_Scenarios.png`), and the scenario summary table (`xlrm_scenario_summary_2015_2019.csv`). |
 | [`well_level_groundwater_2015_2019.csv`](well_level_groundwater_2015_2019.csv) | Seasonal well-level DTW observations (in m bgl) across 22 monitoring wells (14 SGWD/GSDA, 8 CGWB) transcribed from Table 02 of the GSDA Malshiras report. |
 | [`annual_rainfall_2015_2019.csv`](annual_rainfall_2015_2019.csv) | Official annual rainfall records for Malshiras Taluka (2015–2019). |
 | [`groundwater_preliminary_analysis.py`](groundwater_preliminary_analysis.py) | Preliminary baseline script computing seasonal means, valid well counts ($n$), and baseline Figure 1. |
