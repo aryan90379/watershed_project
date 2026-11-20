@@ -1,4 +1,4 @@
-"""Generate a clean Google-Docs-style Final Project Report PDF for Malshiras Taluka (2015-2019)."""
+"""Generate a natural, human-written, well-spaced Google-Docs-style Final Project Report PDF."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -13,7 +13,7 @@ BASE = Path(__file__).resolve().parent
 FINAL_DIR = BASE / "final_submission"
 PDF_OUT = FINAL_DIR / "Final_Project_Report.pdf"
 
-# Register system Arial fonts (exact Google Docs default font)
+# Register system Arial fonts (standard Google Docs font)
 FONT_DIR = Path("/System/Library/Fonts/Supplemental")
 pdfmetrics.registerFont(TTFont("Arial", str(FONT_DIR / "Arial.ttf")))
 pdfmetrics.registerFont(TTFont("Arial-Bold", str(FONT_DIR / "Arial Bold.ttf")))
@@ -28,158 +28,169 @@ pdfmetrics.registerFontFamily(
 )
 
 # ---------------------------------------------------------------------------
-# REPORT SECTIONS (Clean academic prose, zero underscores, within word limits)
+# NATURAL, HUMAN-WRITTEN SECTIONS (Strictly within Moodle word limits)
 # ---------------------------------------------------------------------------
 
 SECTION_1_PROBLEM = [
     (
-        "Malshiras Taluka in Solapur District, Maharashtra, lies within a semi-arid, drought-prone "
-        "hard-rock basalt zone of the Bhima River basin. Over the 2015–2019 analysis period, intensive "
-        "groundwater extraction for perennial cash crops (predominantly sugarcane and horticulture), "
-        "combined with erratic monsoon rainfall (215.29 to 582.30 mm/year), produced severe pre-monsoon "
-        "water-table depletion and acute vulnerability to mid-season dry spells. Crucially, moderate "
-        "rainfall does not guarantee aquifer recovery: in 2018 (332.50 mm rainfall), the mean water "
-        "table rose by only 0.15 m (from 6.02 to 5.87 m below ground level, m bgl), compared to a "
-        "1.32 m rise in 2015 under lower rainfall (215.29 mm)."
+        "Malshiras Taluka in Solapur District, Maharashtra, is a semi-arid, drought-prone basalt region in "
+        "the Bhima River basin. Between 2015 and 2019, heavy groundwater pumping for water-intensive crops "
+        "like sugarcane, combined with erratic monsoon rainfall (215.29 to 582.30 mm per year), caused "
+        "recurring pre-monsoon water table depletion. A key finding from our preliminary work is that higher "
+        "annual rainfall does not automatically lead to groundwater recovery. In 2018, the taluka received "
+        "332.50 mm of rainfall, yet the average water table rose by only 0.15 m after the monsoon (from 6.02 "
+        "to 5.87 m below ground level), compared to a 1.32 m rise in 2015 when rainfall was just 215.29 mm."
     ),
     (
-        "For watershed management and decision-making under the Atal Bhujal Yojana (ABY), key "
-        "stakeholders—including Gram Panchayats, Water User Associations (WUAs), local farmers, the "
-        "Groundwater Surveys and Development Agency (GSDA), the Central Ground Water Board (CGWB), "
-        "and the Solapur District Administration—must determine whether supply-side Managed Aquifer "
-        "Recharge (MAR) structures (check dams, percolation tanks) or demand-side interventions "
-        "(micro-irrigation, crop-water budgeting) can reliably stabilize post-monsoon groundwater "
-        "levels. Building directly upon our preliminary submission (which established the baseline "
-        "2015–2019 seasonal depth-to-water trends across 22 monitoring wells), this final submission "
-        "extends the empirical baseline into an XLRM lumped aquifer water-balance simulation framework "
-        "to evaluate supply-side, demand-side, and integrated management levers under hydrogeological "
-        "and climatic uncertainties without altering the underlying field dataset."
+        "This issue directly affects local farmers, Gram Panchayats, Water User Associations, the Groundwater "
+        "Surveys and Development Agency (GSDA), the Central Ground Water Board (CGWB), and district planners "
+        "working under the Atal Bhujal Yojana scheme. Decision-makers need to know whether supply-side recharge "
+        "structures (such as check dams and percolation tanks) or demand-side measures (such as drip irrigation "
+        "and crop water budgeting) can better protect the aquifer during dry spells. Building on our preliminary "
+        "baseline analysis of 22 monitoring wells, this final report extends the observed 2015–2019 data into an "
+        "XLRM water-balance model to test how different management strategies perform under rainfall and aquifer "
+        "parameter uncertainties."
     ),
 ]
 
 SECTION_2_DATA = [
     (
-        "This study uses site-specific empirical data for Malshiras Taluka covering 2015–2019. "
-        "Groundwater depth-to-water (DTW, in metres below ground level, m bgl) observations were "
-        "transcribed from Table 02 of the GSDA (2020) Atal Bhujal Yojana Hydrogeological Report. "
-        "Spatially, the dataset comprises 22 point monitoring wells distributed across the taluka "
-        "(14 monitored by SGWD/GSDA and 8 by CGWB), aggregated to a lumped taluka-scale mean. "
-        "Temporally, readings have a semi-annual seasonal resolution—pre-monsoon (May) and "
-        "post-monsoon (October/November). Missing well records were retained as null values rather "
-        "than zero, yielding n = 19 to 20 valid wells in May and n = 20 to 21 in October/November. "
-        "Annual taluka-scale rainfall totals (mm/year) for 2015–2019 were compiled from official "
-        "Solapur District Administration records. Unconfined Deccan Trap basalt specific yield "
-        "(Sy from 0.015 to 0.025, reference 0.020) and monsoon recharge factor (fr = 0.22) bounds "
-        "were taken from CGWB GEC-2015 norms."
+        "Groundwater level observations for 2015–2019 were transcribed from Table 02 of the GSDA (2020) Atal "
+        "Bhujal Yojana hydrogeological report for Malshiras Taluka. The dataset covers 22 monitoring wells "
+        "across the taluka (14 monitored by SGWD/GSDA and 8 by CGWB), which are averaged to provide a lumped "
+        "taluka-level spatial representation. Temporally, the observations consist of two seasonal readings per "
+        "year: pre-monsoon (May) and post-monsoon (October/November). Missing measurements were left blank rather "
+        "than set to zero, leaving 19 to 20 valid wells in May and 20 to 21 valid wells in October/November."
+    ),
+    (
+        "Annual rainfall totals for 2015–2019 were taken from official Solapur District Administration rainfall "
+        "records. Unconfined Deccan basalt specific yield values (Sy between 0.015 and 0.025, with 0.020 as the "
+        "baseline) and the monsoon recharge factor (fr = 0.22) were adopted from CGWB GEC-2015 norms."
     ),
 ]
 
 SECTION_3_METHODOLOGY = [
     (
-        "We formulate the Malshiras Taluka groundwater management problem using the XLRM framework, "
-        "grounded in the Water Table Fluctuation (WTF) method (Healy and Cook, 2002; CGWB GEC-2015):"
+        "We structured the groundwater management analysis using the XLRM framework and the Water Table "
+        "Fluctuation (WTF) method (Healy and Cook, 2002; CGWB, 2017)."
     ),
     (
-        "Uncertainties (X): (i) Hydroclimatic variability across observed annual rainfall P in "
-        "{215.29, 436.70, 530.52, 332.50, 582.30} mm (2015–2019); and (ii) unconfined fractured basalt "
-        "specific yield Sy in {0.015, 0.020, 0.025} (dimensionless; reference Sy = 0.020, with gross "
-        "monsoon recharge factor fr = 0.22 capturing rainfall infiltration and canal or surface seepage)."
+        "Uncertainties (X): We consider two main uncertainties: (1) annual rainfall P across the observed "
+        "2015–2019 range of 215.29 to 582.30 mm, and (2) specific yield Sy of the fractured basalt aquifer, "
+        "tested across 0.015, 0.020, and 0.025 (dimensionless), with a baseline monsoon recharge factor fr = 0.22."
     ),
     (
-        "Policy Levers (L): Four scenarios parameterized by supply-side MAR recharge enhancement "
-        "(a) and demand-side monsoon draft reduction (b): "
-        "L0 (Baseline BAU: a = 0, b = 0); "
-        "L1 (Supply-Side MAR via check dams and percolation tanks: a = 0.20, b = 0); "
-        "L2 (Demand-Side Management via drip irrigation and crop shift: a = 0, b = 0.25); "
-        "and L3 (Integrated Management: a = 0.20, b = 0.25)."
+        "Policy Levers (L): We evaluate four management options defined by a supply-side recharge gain factor (a) "
+        "and a demand-side pumping reduction factor (b):"
     ),
     (
-        "Relationships (R) and Main Equations (Healy and Cook, 2002; CGWB, 2017):<br/>"
-        "Mean DTW(t, s) = (1 / n) * sum(DTW(i, t, s))<br/>"
-        "dh(t) = Mean May DTW(t) - Mean OctNov DTW(t)<br/>"
-        "dS(t) = Sy * dh(t) * 1000 = R(t) - D(t)<br/>"
-        "dhsim(t) = [ (1 + a) * R(t) - (1 - b) * D(t) ] / (1000 * Sy)<br/>"
-        "Simulated OctNov DTW(t) = Mean May DTW(t) - dhsim(t)"
+        "• L0 (Baseline): no new intervention (a = 0, b = 0)."
     ),
     (
-        "Term Definitions: t is year (2015–2019); s is season (May or Oct/Nov); DTW(i, t, s) is depth-to-water "
-        "at well i (m bgl); n is valid well count; dh(t) and dhsim(t) are observed and simulated seasonal "
-        "water-table rises (m); dS(t) is net seasonal aquifer storage change (mm water equivalent); "
-        "R(t) = fr * P(t) is baseline gross monsoon recharge (mm); D(t) is implied baseline seasonal net "
-        "draft and discharge (mm); and Simulated OctNov DTW(t) is simulated post-monsoon DTW (m bgl)."
+        "• L1 (Supply-Side MAR): check dams and percolation tanks increasing monsoon recharge by 20% (a = 0.20, b = 0)."
     ),
     (
-        "Measures (M): (M1) Simulated post-monsoon DTW (m bgl, compared against a 3.50 m bgl "
-        "sustainability threshold); (M2) net seasonal storage recovery dSsim (mm); and (M3) dry-year "
-        "stress recovery in 2018."
+        "• L2 (Demand-Side Management): micro-irrigation and crop shifts cutting seasonal draft by 25% (a = 0, b = 0.25)."
+    ),
+    (
+        "• L3 (Integrated Management): combining both 20% recharge augmentation and 25% draft reduction (a = 0.20, b = 0.25)."
+    ),
+    (
+        "Relationships (R) and Main Equations (Healy and Cook, 2002; CGWB, 2017):"
+    ),
+    (
+        "Mean DTW(year, season) = sum of valid well depth-to-water readings / n"
+    ),
+    (
+        "Seasonal Rise dh = Mean DTW May - Mean DTW OctNov"
+    ),
+    (
+        "Baseline Storage Change dS = Sy * dh * 1000 = R - D"
+    ),
+    (
+        "Simulated Rise dhsim = [ (1 + a) * R - (1 - b) * D ] / (1000 * Sy)"
+    ),
+    (
+        "Simulated OctNov DTW = Mean DTW May - dhsim"
+    ),
+    (
+        "Where n is the number of valid wells in that season; dh and dhsim are the observed and simulated seasonal "
+        "water-table rises (m); dS is the net seasonal groundwater storage change (mm of water); R = fr * P is "
+        "baseline gross monsoon recharge (mm); D is implied baseline seasonal net draft and discharge (mm); and "
+        "Simulated OctNov DTW is the resulting post-monsoon depth-to-water (m below ground level)."
+    ),
+    (
+        "Measures (M): Performance is evaluated using (1) post-monsoon depth-to-water (m bgl) relative to a 3.50 m "
+        "bgl sustainability target, (2) net seasonal storage recovery dS (mm), and (3) water-table recovery during "
+        "the 2018 dry-spell stress year."
     ),
 ]
 
 SECTION_4_RESULTS = [
     (
-        "Figure 1 presents the baseline empirical pre-monsoon (May) and post-monsoon (October/November) "
-        "mean depth-to-water (m bgl) across the 22 monitoring wells in Malshiras Taluka from 2015 to 2019. "
-        "In every year, post-monsoon DTW was lower (shallower water table) than pre-monsoon DTW: "
-        "6.46 to 5.14 m in 2015 (seasonal rise dh = 1.32 m; rainfall P = 215.29 mm), 7.17 to 3.04 m in 2016 "
-        "(4.13 m; 436.70 mm), 6.86 to 2.78 m in 2017 (4.08 m; 530.52 mm), 6.02 to 5.87 m in 2018 "
-        "(0.15 m; 332.50 mm), and 8.07 to 3.63 m in 2019 (4.44 m; 582.30 mm). Figure 1 highlights the "
-        "critical 2018 anomaly: despite receiving 117.21 mm more rainfall than 2015, 2018 recorded almost "
-        "no net water-table recovery (0.15 m), leaving May 2019 at the deepest pre-monsoon level (8.07 m bgl)."
+        "Figure 1 shows the observed pre-monsoon (May) and post-monsoon (October/November) mean depth-to-water "
+        "across Malshiras Taluka from 2015 to 2019. In all five years, the post-monsoon depth-to-water was lower "
+        "than the pre-monsoon depth, indicating a seasonal rise in the water table. The pre-monsoon and "
+        "post-monsoon means (in m bgl) were 6.46 and 5.14 in 2015 (rise dh = 1.32 m), 7.17 and 3.04 in 2016 "
+        "(4.13 m), 6.86 and 2.78 in 2017 (4.08 m), 6.02 and 5.87 in 2018 (0.15 m), and 8.07 and 3.63 in 2019 "
+        "(4.44 m). Figure 1 clearly highlights the 2018 anomaly: even though 2018 had 332.50 mm of rainfall "
+        "(more than 2015), the water table barely recovered (0.15 m), which pushed May 2019 to the deepest "
+        "pre-monsoon level of the five-year period (8.07 m bgl)."
     ),
     (
-        "Figure 2 illustrates the XLRM scenario outputs for simulated post-monsoon DTW (Figure 2a) and net "
-        "seasonal aquifer storage recovery dS (Figure 2b) across levers L0 to L3. Water-balance decomposition "
-        "(at reference Sy = 0.020, fr = 0.22) reveals that implied seasonal draft D surged to 70.15 mm "
-        "in 2018 (consuming 96% of the 73.15 mm gross recharge and leaving dS = 3.0 mm), compared to "
-        "13.47–39.31 mm in other years. Consequently, in wet years (2016, 2017, 2019), Supply-Side MAR (L1) "
-        "outperforms Demand-Side Management (L2), increasing 2019 storage recovery from 88.8 mm (L0) to "
-        "114.4 mm (L1) versus 98.6 mm (L2). Conversely, during the 2018 stress year, Demand-Side Management "
-        "(L2: post-monsoon DTW = 4.99 m bgl, dS = 20.5 mm) outperforms Supply-Side MAR (L1: 5.14 m bgl, "
-        "dS = 17.6 mm) because high pumping rather than lack of rain dominated the deficit. Integrated "
-        "Management (L3) performs best across all years, improving 5-year mean post-monsoon DTW from 4.09 m "
-        "(L0) to 2.72 m bgl (uncertainty range 2.27–3.00 m bgl across Sy from 0.015 to 0.025), recovering "
-        "2018 post-monsoon DTW to 4.26 m bgl, and raising 5-year mean seasonal storage recovery from 56.5 "
-        "to 83.9 mm/year."
+        "Figure 2 compares the simulated post-monsoon depth-to-water (Figure 2a) and net seasonal aquifer storage "
+        "recovery dS (Figure 2b) across the four management scenarios (L0 to L3). Breaking down the baseline water "
+        "balance (at Sy = 0.020, fr = 0.22) shows that seasonal groundwater draft D jumped to 70.15 mm in 2018, "
+        "consuming 96% of the 73.15 mm gross recharge and leaving only 3.0 mm of net storage gain, compared to "
+        "13.47–39.31 mm of draft in other years."
+    ),
+    (
+        "Because of this difference, Supply-Side MAR (L1) gives larger gains than Demand-Side Management (L2) in "
+        "wet years like 2016, 2017, and 2019 (boosting 2019 storage recovery from 88.8 mm to 114.4 mm under L1, "
+        "versus 98.6 mm under L2). However, in the 2018 stress year, Demand-Side Management (L2: post-monsoon "
+        "DTW = 4.99 m bgl, dS = 20.5 mm) outperforms Supply-Side MAR (L1: 5.14 m bgl, dS = 17.6 mm) because heavy "
+        "pumping was the main driver of depletion. Integrated Management (L3) performs best overall, bringing the "
+        "five-year mean post-monsoon DTW from 4.09 m down to 2.72 m bgl (ranging from 2.27 to 3.00 m bgl across "
+        "the Sy uncertainty band), improving 2018 post-monsoon DTW to 4.26 m bgl, and increasing average seasonal "
+        "storage recovery from 56.5 to 83.9 mm per year."
     ),
 ]
 
 SECTION_5_DISCUSSION = [
     (
-        "The XLRM results demonstrate that seasonal groundwater recovery in Malshiras Taluka is governed by "
-        "the interaction between hydroclimatic recharge and agricultural pumping rather than annual rainfall "
-        "totals alone. In our lumped WTF model, partitioning observed storage change (dS = Sy * dh * 1000) "
-        "into gross recharge (R) and net seasonal draft (D) explains the 2018 anomaly: erratic monsoon "
-        "distribution triggered intensive protective irrigation pumping (D = 70.15 mm), offsetting "
-        "natural recharge. This mechanism creates a distinct regime dependency between policy levers. "
-        "Supply-side interventions (L1: check dams, nala bunds, percolation tanks) depend multiplicatively on "
-        "available rainfall runoff and therefore yield large gains in normal-to-wet years (2016, 2017, 2019), "
-        "but provide limited buffering when monsoon extraction spikes. Conversely, demand-side interventions "
-        "(L2: drip irrigation, shifting sugarcane acreage to lower-water crops) directly curtail seasonal draft "
-        "D and prove more effective than supply augmentation during drought-stress periods like 2018. Only the "
-        "integrated portfolio (L3) consistently keeps post-monsoon water tables shallower than the 3.50 m bgl "
-        "threshold in 3 of 5 years while reducing the 2018 deficit by 1.61 m. Parameter sensitivity across "
-        "Sy from 0.015 to 0.025 shows that lower specific yield amplifies water-table depth fluctuations for a "
-        "given volumetric storage change, underscoring the risk of rapid head decline in low-porosity basalt."
+        "The simulation results show that seasonal groundwater recovery in Malshiras Taluka depends on the balance "
+        "between monsoon recharge and agricultural pumping, rather than total annual rainfall alone. In our water "
+        "balance model, separating net storage change (dS) into gross recharge (R) and seasonal draft (D) explains "
+        "why 2018 saw almost no recovery: uneven rainfall during the monsoon forced farmers to pump heavily for "
+        "protective irrigation (D = 70.15 mm), which cancelled out most of the natural recharge."
     ),
     (
-        "While these findings provide actionable strategic guidance for Atal Bhujal Yojana water budgeting—showing "
-        "that Gram Panchayats must pair MAR structures with mandatory demand management—the lumped taluka-scale "
-        "results cannot be used directly for site-level engineering design. Real-world operational deployment "
-        "requires: (1) DEM-based topographic sub-watershed delineation to replace administrative taluka boundaries; "
-        "(2) high-frequency (monthly or daily) piezometer and rain-gauge data to capture intra-monsoon storm "
-        "intensity and dry-season (November–May) recession separately; (3) village-level crop acreage, canal release, "
-        "and pump metering data to separate seasonal draft D from recharge factor fr; and (4) pumping-test "
-        "calibration of spatially distributed Sy and transmissivity within a numerical groundwater flow model "
-        "(such as MODFLOW)."
+        "This creates a clear difference in how policy levers behave. Supply-side structures (L1) scale with "
+        "available rainfall and work very well in normal or wet years (2016, 2017, and 2019), but offer limited "
+        "protection when pumping spikes during dry spells. In contrast, demand-side measures (L2) directly reduce "
+        "seasonal extraction and provide better protection during stress years like 2018. Combining both approaches "
+        "(L3) is the only strategy that keeps post-monsoon water levels above the 3.50 m bgl threshold in three out "
+        "of five years while cutting the 2018 deficit by 1.61 m. Sensitivity testing across Sy (0.015 to 0.025) "
+        "also shows that lower specific yield causes larger water-table swings for the same volume of extraction."
+    ),
+    (
+        "For watershed decision-making under Atal Bhujal Yojana, these results show that building check dams and "
+        "percolation tanks must be paired with demand-side crop and irrigation management. However, because our "
+        "model uses lumped taluka-level averages, the numbers cannot be used directly to size or locate individual "
+        "structures on the ground. Making this analysis ready for field implementation would require: (1) delineating "
+        "exact sub-watershed boundaries using a Digital Elevation Model (DEM) instead of administrative taluka borders, "
+        "(2) collecting monthly or daily rainfall and water-level data to track within-monsoon recharge and summer "
+        "drawdown separately, (3) gathering village-level crop area, canal seepage, and electricity or pump-metering "
+        "records to measure draft directly, and (4) conducting pumping tests to calibrate spatially varying specific "
+        "yield and transmissivity in a distributed groundwater model such as MODFLOW."
     ),
 ]
 
 SECTION_6_REFERENCES = [
     (
-        "1. Ground Water Surveys and Development Agency (GSDA) (2020). Atal Bhujal Yojana Hydrogeological "
-        "Report: Malshiras Taluka, Solapur District, Maharashtra (Table 02: Historical Pre- and Post-Monsoon "
-        "Groundwater Level Monitoring Data, 2015–2019). Water Supply and Sanitation Department, Government of "
-        "Maharashtra.<br/>"
+        "1. Ground Water Surveys and Development Agency (GSDA) (2020). Atal Bhujal Yojana Hydrogeological Report: "
+        "Malshiras Taluka, Solapur District, Maharashtra (Table 02: Historical Pre- and Post-Monsoon Groundwater "
+        "Level Monitoring Data, 2015–2019). Water Supply and Sanitation Department, Government of Maharashtra.<br/>"
         "<a href='https://gsda.maharashtra.gov.in/wp-content/uploads/2023/05/0.23.pdf' color='#1155CC'>"
         "https://gsda.maharashtra.gov.in/wp-content/uploads/2023/05/0.23.pdf</a>"
     ),
@@ -191,23 +202,39 @@ SECTION_6_REFERENCES = [
     ),
     (
         "3. Healy, R. W., and Cook, P. G. (2002). Using groundwater levels to estimate recharge. Hydrogeology "
-        "Journal, 10(1), 91–109; alongside Central Ground Water Board (CGWB) (2017), Report of the Ground "
+        "Journal, 10(1), 91–109; along with Central Ground Water Board (CGWB) (2017), Report of the Ground "
         "Water Resource Estimation Committee (GEC-2015), Ministry of Water Resources, Government of India."
     ),
     (
         "Data and Code Repository:<br/>"
-        "All groundwater and rainfall CSV datasets, scenario summary tables, reproducible Python scripts, "
-        "and figures are available at:<br/>"
         "<a href='https://github.com/aryan90379/watershed_project' color='#1155CC'>"
         "https://github.com/aryan90379/watershed_project</a>"
     ),
 ]
 
 
+def word_count(paragraphs: list[str]) -> int:
+    joined = " ".join(p.replace("<br/>", " ") for p in paragraphs)
+    return len(joined.split())
+
+
 def main() -> None:
     FINAL_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Standard Google Docs layout: Letter paper, 1-inch (72 pt) margins, white page, no header/footer
+    checks = [
+        ("1. Problem Statement", SECTION_1_PROBLEM, 250),
+        ("2. Data", SECTION_2_DATA, 150),
+        ("3. Methodology", SECTION_3_METHODOLOGY, 400),
+        ("4. Results", SECTION_4_RESULTS, 400),
+        ("5. Discussion", SECTION_5_DISCUSSION, 400),
+        ("6. References and Data/Code Repository", SECTION_6_REFERENCES, 500),
+    ]
+    for title, paras, limit in checks:
+        wc = word_count(paras)
+        print(f"{title}: {wc} / {limit} words")
+        assert wc <= limit, f"{title} over limit: {wc} > {limit}"
+
+    # Airy, natural Google Docs layout: Letter paper, 1-inch margins
     doc = SimpleDocTemplate(
         str(PDF_OUT),
         pagesize=letter,
@@ -221,19 +248,19 @@ def main() -> None:
         "GDocTitle",
         fontName="Arial-Bold",
         fontSize=15,
-        leading=20,
+        leading=21,
         textColor=colors.black,
-        spaceAfter=14,
+        spaceAfter=18,
     )
 
     heading_style = ParagraphStyle(
         "GDocHeading",
         fontName="Arial-Bold",
         fontSize=12,
-        leading=15.5,
+        leading=16.5,
         textColor=colors.black,
-        spaceBefore=11,
-        spaceAfter=5,
+        spaceBefore=15,
+        spaceAfter=7,
         keepWithNext=True,
     )
 
@@ -241,34 +268,56 @@ def main() -> None:
         "GDocBody",
         fontName="Arial",
         fontSize=11,
-        leading=13.8,
+        leading=15.8,
         textColor=colors.black,
-        spaceAfter=8,
+        spaceAfter=10,
+    )
+
+    bullet_style = ParagraphStyle(
+        "GDocBullet",
+        fontName="Arial",
+        fontSize=11,
+        leading=15.5,
+        leftIndent=14,
+        textColor=colors.black,
+        spaceAfter=5,
+    )
+
+    eq_style = ParagraphStyle(
+        "GDocEquation",
+        fontName="Arial",
+        fontSize=11,
+        leading=15.8,
+        leftIndent=18,
+        textColor=colors.black,
+        spaceBefore=2,
+        spaceAfter=7,
     )
 
     story = []
 
-    # Clean document title (standard Google Doc style)
     story.append(
         Paragraph("Groundwater Level and XLRM Management Analysis: Malshiras Taluka (2015–2019)", title_style)
     )
 
-    sections = [
-        ("1. Problem Statement", SECTION_1_PROBLEM),
-        ("2. Data", SECTION_2_DATA),
-        ("3. Methodology", SECTION_3_METHODOLOGY),
-        ("4. Results", SECTION_4_RESULTS),
-        ("5. Discussion", SECTION_5_DISCUSSION),
-        ("6. References and Data/Code Repository", SECTION_6_REFERENCES),
-    ]
-
-    for heading, paragraphs in sections:
+    for heading, paragraphs, _ in checks:
         story.append(Paragraph(heading, heading_style))
         for p in paragraphs:
-            story.append(Paragraph(p, body_style))
+            if p.startswith("• "):
+                story.append(Paragraph(p, bullet_style))
+            elif any(p.startswith(prefix) for prefix in (
+                "Mean DTW(year, season) =",
+                "Seasonal Rise dh =",
+                "Baseline Storage Change dS =",
+                "Simulated Rise dhsim =",
+                "Simulated OctNov DTW =",
+            )):
+                story.append(Paragraph(p, eq_style))
+            else:
+                story.append(Paragraph(p, body_style))
 
     doc.build(story)
-    print(f"Wrote Google-Docs-style PDF: {PDF_OUT.relative_to(BASE)}")
+    print(f"Wrote PDF: {PDF_OUT.relative_to(BASE)}")
 
 
 if __name__ == "__main__":
