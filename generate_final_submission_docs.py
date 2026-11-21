@@ -36,20 +36,20 @@ SECTION_1_PROBLEM = [
         "Malshiras Taluka in Solapur District, Maharashtra, is a semi-arid, drought-prone basalt region in "
         "the Bhima River basin. Between 2015 and 2019, heavy groundwater pumping for water-intensive crops "
         "like sugarcane, combined with erratic monsoon rainfall (215.29 to 582.30 mm per year), caused "
-        "recurring pre-monsoon water table depletion. A key finding from our preliminary work is that higher "
-        "annual rainfall does not automatically lead to groundwater recovery. In 2018, the taluka received "
-        "332.50 mm of rainfall, yet the average water table rose by only 0.15 m after the monsoon (from 6.02 "
-        "to 5.87 m below ground level), compared to a 1.32 m rise in 2015 when rainfall was just 215.29 mm."
+        "recurring pre-monsoon water table depletion. In 2018, the taluka received 332.50 mm of rainfall, "
+        "yet the average water table rose by only 0.15 m after the monsoon (from 6.02 to 5.87 m below ground "
+        "level), compared to a 1.32 m rise in 2015 under just 215.29 mm of rainfall."
     ),
     (
         "This issue directly affects local farmers, Gram Panchayats, Water User Associations, the Groundwater "
         "Surveys and Development Agency (GSDA), the Central Ground Water Board (CGWB), and district planners "
-        "working under the Atal Bhujal Yojana scheme. Decision-makers need to know whether supply-side recharge "
-        "structures (such as check dams and percolation tanks) or demand-side measures (such as drip irrigation "
-        "and crop water budgeting) can better protect the aquifer during dry spells. Building on our preliminary "
-        "baseline analysis of 22 monitoring wells, this final report extends the observed 2015–2019 data into an "
-        "XLRM water-balance model to test how different management strategies perform under rainfall and aquifer "
-        "parameter uncertainties."
+        "under the Atal Bhujal Yojana scheme. In response to our preliminary report feedback—which noted that "
+        "a water-budget-level analysis was needed to show how observed well data help in designing "
+        "interventions—this final report converts the 2015–2019 well observations into a seasonal aquifer "
+        "water budget (quantifying gross monsoon recharge, groundwater draft, and net storage change in mm) "
+        "within an XLRM framework. This directly links the observed water-table fluctuations to the design "
+        "and comparison of supply-side recharge structures (check dams, percolation tanks) and demand-side "
+        "measures (micro-irrigation, crop water budgeting) under rainfall and aquifer parameter uncertainties."
     ),
 ]
 
