@@ -27,7 +27,7 @@ except ImportError as exc:
 BASE = Path(__file__).resolve().parent
 WELL_CSV = BASE / "well_level_groundwater_2015_2019.csv"
 RAINFALL_CSV = BASE / "annual_rainfall_2015_2019.csv"
-FINAL_DIR = BASE / "final_submission"
+FINAL_DIR = BASE if BASE.name == "code_analysis" else (BASE / "final_submission" / "code_analysis")
 
 FIG1_PNG = FINAL_DIR / "Figure_1_Baseline_Seasonal_DTW.png"
 FIG2_PNG = FINAL_DIR / "Figure_2_XLRM_Management_Scenarios.png"

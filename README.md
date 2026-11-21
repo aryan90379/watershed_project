@@ -8,13 +8,14 @@ Empirical seasonal depth-to-water (DTW) baseline analysis and **XLRM (Uncertaint
 
 | File / Folder | Description |
 | :--- | :--- |
-| [`final_submission/`](final_submission/) | **Final Project Submission Package**: Contains the final report (`Final_Project_Report.pdf`), individual visual files (`Figure_1_Baseline_Seasonal_DTW.png`, `Figure_2_XLRM_Management_Scenarios.png`), and the scenario summary table (`xlrm_scenario_summary_2015_2019.csv`). |
+| [`final_submission/Final_Project_Report.pdf`](final_submission/Final_Project_Report.pdf) | **Final Project Report PDF**: Complete report including problem statement, data, XLRM methodology, results with embedded Figures 1 & 2, discussion, and references. |
+| [`final_submission/code_analysis/`](final_submission/code_analysis/) | **Code & Analysis Package**: Contains all clean Python analysis scripts (`groundwater_preliminary_analysis.py`, `groundwater_final_xlrm_analysis.py`), input CSV datasets, generated summary tables, and high-resolution figures (`Figure_1_Baseline_Seasonal_DTW.png`, `Figure_2_XLRM_Management_Scenarios.png`). |
 | [`well_level_groundwater_2015_2019.csv`](well_level_groundwater_2015_2019.csv) | Seasonal well-level DTW observations (in m bgl) across 22 monitoring wells (14 SGWD/GSDA, 8 CGWB) transcribed from Table 02 of the GSDA Malshiras report. |
 | [`annual_rainfall_2015_2019.csv`](annual_rainfall_2015_2019.csv) | Official annual rainfall records for Malshiras Taluka (2015–2019). |
 | [`groundwater_preliminary_analysis.py`](groundwater_preliminary_analysis.py) | Preliminary baseline script computing seasonal means, valid well counts ($n$), and baseline Figure 1. |
 | [`groundwater_final_xlrm_analysis.py`](groundwater_final_xlrm_analysis.py) | **Final XLRM analysis script** implementing the Water Table Fluctuation (WTF) aquifer water-balance model across policy levers ($L_0\text{–}L_3$) and specific yield uncertainties ($S_y \in [0.015, 0.025]$). |
 | [`calculated_seasonal_summary.csv`](calculated_seasonal_summary.csv) | Baseline seasonal DTW means, valid sample counts, and observed seasonal rise ($\Delta h_{\text{obs}}$). |
-| [`final_submission/xlrm_scenario_summary_2015_2019.csv`](final_submission/xlrm_scenario_summary_2015_2019.csv) | Complete XLRM simulation outputs across all policy levers and parameter uncertainty bounds (2015–2019). |
+| [`final_submission/code_analysis/xlrm_scenario_summary_2015_2019.csv`](final_submission/code_analysis/xlrm_scenario_summary_2015_2019.csv) | Complete XLRM simulation outputs across all policy levers and parameter uncertainty bounds (2015–2019). |
 
 ---
 
